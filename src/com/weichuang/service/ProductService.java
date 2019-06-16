@@ -1,6 +1,7 @@
 package com.weichuang.service;
 
 import com.weichuang.dao.ProductDao;
+import com.weichuang.domain.Category;
 import com.weichuang.domain.Product;
 
 import java.sql.SQLException;
@@ -19,5 +20,17 @@ public class ProductService {
 
     public Product getProductById(String pid) throws SQLException {
         return productDao.getProductById(pid);
+    }
+
+    public List<Category> getAllCategory() throws SQLException {
+        return productDao.getAllCategory();
+    }
+
+    public void addProduct(Product product) throws SQLException {
+        productDao.addProduct(product);
+    }
+
+    public void deleteProductById(String pid) throws SQLException {
+        productDao.deleteProductById(pid);
     }
 }

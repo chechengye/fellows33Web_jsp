@@ -23,4 +23,44 @@
         <servlet-name>ProductInfoServlet</servlet-name>
         <url-pattern>/productInfo</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>AdminProductListServlet</servlet-name>
+        <servlet-class>com.weichuang.web.AdminProductListServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>AdminProductListServlet</servlet-name>
+        <url-pattern>/adminProductList</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>AdminCategoryListServlet</servlet-name>
+        <servlet-class>com.weichuang.web.AdminCategoryListServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>AdminCategoryListServlet</servlet-name>
+        <url-pattern>/adminCategoryList</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>AdminProductAddServlet</servlet-name>
+        <servlet-class>com.weichuang.web.AdminProductAddServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>AdminProductAddServlet</servlet-name>
+        <url-pattern>/adminProductAdd</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>AdminDeleteProductServlet</servlet-name>
+        <servlet-class>com.weichuang.web.AdminDeleteProductServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>AdminDeleteProductServlet</servlet-name>
+        <url-pattern>/adminDeleteProduct</url-pattern>
+    </servlet-mapping>
 </web-app>
