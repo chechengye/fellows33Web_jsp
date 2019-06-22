@@ -12,18 +12,19 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
-public class AdminProductListServlet extends HttpServlet {
+public class AdminProductUpdateUIServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         try {
+            String pid = req.getParameter("pid");
             ProductService productService = new ProductService();
-            List<Product> productList = productService.getAllProduct();
             List<Category> categoryList = productService.getAllCategory();
-            req.setAttribute("productList" , productList);
+            Product product = productService.getProductById(pid);
+            req.setAttribute("product" , product);
             req.setAttribute("categoryList" , categoryList);
-            req.getRequestDispatcher("admin/product/list.jsp").forward(req , resp);
+            req.getRequestDispatcher("admin/product/edit.jsp").forward(req , resp);
         } catch (SQLException e) {
             e.printStackTrace();
         }

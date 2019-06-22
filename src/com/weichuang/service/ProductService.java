@@ -3,6 +3,7 @@ package com.weichuang.service;
 import com.weichuang.dao.ProductDao;
 import com.weichuang.domain.Category;
 import com.weichuang.domain.Product;
+import com.weichuang.vo.Condition;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -32,5 +33,13 @@ public class ProductService {
 
     public void deleteProductById(String pid) throws SQLException {
         productDao.deleteProductById(pid);
+    }
+
+    public void updateProductByProduct(Product product) throws SQLException {
+        productDao.updateProductByProduct(product);
+    }
+
+    public List<Product> getProductsByCondition(Condition condition) throws SQLException {
+        return productDao.getProductsByCondition(condition);
     }
 }
