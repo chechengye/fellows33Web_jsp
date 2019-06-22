@@ -42,4 +42,12 @@ public class ProductService {
     public List<Product> getProductsByCondition(Condition condition) throws SQLException {
         return productDao.getProductsByCondition(condition);
     }
+
+    public int getTotalCount() throws SQLException {
+        return productDao.getTotalCount();
+    }
+
+    public List<Product> getProductsByLimit(int index , int maxCount) throws SQLException {
+        return productDao.getProductsByLimit(index , maxCount);
+    }
 }

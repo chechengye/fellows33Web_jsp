@@ -40,7 +40,7 @@ body {
 			</ol>
 		</div>
 
-		<c:forEach items="${productList}" var="product">
+		<c:forEach items="${pageBean.productList}" var="product">
 			<div class="col-md-2" style="height: 270px;">
 				<a href="product_info.htm"> <img src="${product.pimage}"
 												 width="170" height="170" style="display: inline-block;">
@@ -59,19 +59,43 @@ body {
 	<!--分页 -->
 	<div style="width: 380px; margin: 0 auto; margin-top: 50px;">
 		<ul class="pagination" style="text-align: center; margin-top: 10px;">
-			<li class="disabled"><a href="#" aria-label="Previous"><span
-					aria-hidden="true">&laquo;</span></a></li>
-			<li class="active"><a href="#">1</a></li>
-			<li><a href="#">2</a></li>
+			<c:if test="${pageBean.currentPage == 1}">
+				<li class="disabled"><a href="javascript:void(0)" aria-label="Previous"><span
+						aria-hidden="true">&laquo;</span></a></li>
+			</c:if>
+			<c:if test="${pageBean.currentPage != 1}">
+				<li><a href=${pageContext.request.contextPath}"/productList?currentPage=${pageBean.currentPage - 1}" aria-label="Previous"><span
+						aria-hidden="true">&laquo;</span></a></li>
+			</c:if>
+
+			<c:forEach begin="1" end="${pageBean.totalPages}" var="page">
+				<c:if test="${pageBean.currentPage == page}">
+					<li class="active"><a href=${pageContext.request.contextPath}"/productList?currentPage=${page}">${page}</a></li>
+				</c:if>
+
+				<c:if test="${pageBean.currentPage != page}">
+					<li ><a href=${pageContext.request.contextPath}"/productList?currentPage=${page}">${page}</a></li>
+				</c:if>
+
+			</c:forEach>
+
+			<c:if test="${pageBean.currentPage != pageBean.totalPages}">
+				<li><a href=${pageContext.request.contextPath}"/productList?currentPage=${pageBean.currentPage + 1}" aria-label="Next"> <span aria-hidden="true">&raquo;</span></a></li>
+			</c:if>
+			<c:if test="${pageBean.currentPage == pageBean.totalPages}">
+				<li class="disabled"><a href="javascript:void(0)"  aria-label="Next"> <span aria-hidden="true">&raquo;</span></a></li>
+
+			</c:if>
+			<%--
+
 			<li><a href="#">3</a></li>
 			<li><a href="#">4</a></li>
 			<li><a href="#">5</a></li>
 			<li><a href="#">6</a></li>
 			<li><a href="#">7</a></li>
 			<li><a href="#">8</a></li>
-			<li><a href="#">9</a></li>
-			<li><a href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-			</a></li>
+			<li><a href="#">9</a></li>--%>
+
 		</ul>
 	</div>
 	<!-- 分页结束 -->

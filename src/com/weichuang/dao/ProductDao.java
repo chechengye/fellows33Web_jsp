@@ -7,6 +7,7 @@ import com.weichuang.vo.Condition;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
+import org.apache.commons.dbutils.handlers.ScalarHandler;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -72,5 +73,16 @@ public class ProductDao {
             list.add(condition.getIs_hot());
         }
         return qr.query(sql , new BeanListHandler<>(Product.class) , list.toArray());
+    }
+
+    public int getTotalCount() throws SQLException {
+        String sql = "select count(*) from product";
+        Long l = (Long)qr.query(sql, new ScalarHandler());
+        return l.intValue();
+    }
+
+    public List<Product> getProductsByLimit(int index , int maxCount) throws SQLException {
+        String sql = "select * from product limit ? , ?";
+        return qr.query(sql , new BeanListHandler<>(Product.class) , index , maxCount);
     }
 }
