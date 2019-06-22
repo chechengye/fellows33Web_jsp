@@ -93,4 +93,14 @@
         <servlet-name>AdminProductUpdateServlet</servlet-name>
         <url-pattern>/adminProductUpdate</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>SearchWordServlet</servlet-name>
+        <servlet-class>com.weichuang.web.SearchWordServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>SearchWordServlet</servlet-name>
+        <url-pattern>/searchWord</url-pattern>
+    </servlet-mapping>
 </web-app>

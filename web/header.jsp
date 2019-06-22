@@ -42,12 +42,54 @@
 					<li><a href="#">电脑办公</a></li>
 				</ul>
 				<form class="navbar-form navbar-right" role="search">
-					<div class="form-group">
-						<input type="text" class="form-control" placeholder="Search">
+					<div class="form-group" style="position: relative;">
+						<input id="search" type="text" class="form-control" placeholder="Search" onkeyup="searchWord(this)">
+						<div id="searchStr" style="z-index:1000 ; display:none;position:absolute ; width: 174px ; height: 240px; background: white"></div>
 					</div>
 					<button type="submit" class="btn btn-default">Submit</button>
 				</form>
 			</div>
 		</div>
 	</nav>
+	<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript">
+		function searchWord(obj) {
+			var word = $(obj).val();
+			var contentStr = "";
+			if(word != ""){
+                $.ajax({
+                    url:${pageContext.request.contextPath}"/searchWord",
+                    type:"POST",
+                    success:function (data) {
+                        if(data.length>0){
+                            for(var i = 0 ; i < data.length ; i++){
+                                contentStr += "<div style='font-size: 12px;padding: 5px;' onmouseover='fn1(this);' onmouseout='fn2(this);' onclick='fn3(this);'>" + data[i].pname +"</div>";
+                            }
+                            $("#searchStr").html(contentStr);
+                            $("#searchStr").css("display","block");
+                        }
+
+                    },
+                    dataType:"json",
+                    data:{"word":word}
+                });
+			}else{
+                $("#searchStr").css("display","none");
+            }
+
+        }
+        function fn1(obj) {
+			$(obj).css("background" , "#1E6BAE");
+        }
+
+        function fn2(obj) {
+            $(obj).css("background" , "#fff");
+        }
+
+        function fn3(obj) {
+            var pname = $(obj).html();
+			$("#search").val(pname);
+            $("#searchStr").css("display","none");
+        }
+	</script>
 </div>

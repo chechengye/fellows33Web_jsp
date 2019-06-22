@@ -50,4 +50,8 @@ public class ProductService {
     public List<Product> getProductsByLimit(int index , int maxCount) throws SQLException {
         return productDao.getProductsByLimit(index , maxCount);
     }
+
+    public List<Product> getProductsByWord(String word) throws SQLException {
+        return productDao.getProductsByWord(word);
+    }
 }

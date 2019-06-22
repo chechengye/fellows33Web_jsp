@@ -85,4 +85,9 @@ public class ProductDao {
         String sql = "select * from product limit ? , ?";
         return qr.query(sql , new BeanListHandler<>(Product.class) , index , maxCount);
     }
+
+    public List<Product> getProductsByWord(String word) throws SQLException {
+        String sql = "select * from product where pname like ? limit 0 , 5";
+        return qr.query(sql , new BeanListHandler<>(Product.class) , "%" + word + "%");
+    }
 }
